@@ -1,10 +1,16 @@
 ﻿namespace Competition2_group4
 {
-    internal class Program
+    public class Person
     {
-        static void Main(string[] args)
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string ID { get; set; }
+
+        public Person(string name, string email, string id)
         {
-            Console.WriteLine("Hello, World!");
+            Name = name;
+            Email = email;
+            ID = id;
         }
     }
 }

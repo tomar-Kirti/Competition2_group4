@@ -1,56 +1,44 @@
-﻿using System;
+﻿using Competition2_group4;
+using System;
 
-namespace Competition2_group4
+namespace LibraryManagementSystem
 {
-    public class Person
-    {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string ID { get; set; }
-
-        public Person(string name, string email, string id)
-        {
-            Name = name;
-            Email = email;
-            ID = id;
-        }
-    }
-
-    public class Staff : Person
-    {
-        public string Position { get; set; }
-        public string Department { get; set; }
-
-        public Staff(string name, string email, string id, string position, string department)
-            : base(name, email, id)
-        {
-            Position = position;
-            Department = department;
-        }
-    }
-
-    public class Student : Person
-    {
-        public string Major { get; set; }
-        public int GraduationYear { get; set; }
-
-        public Student(string name, string email, string id, string major, int graduationYear)
-            : base(name, email, id)
-        {
-            Major = major;
-            GraduationYear = graduationYear;
-        }
-    }
-
     internal class Program
     {
         static void Main(string[] args)
         {
-            Student s1 = new Student("Akhil", "akhil@usf.edu", "S001", "Business Analytics", 2026);
-            Staff st1 = new Staff("Grandon Gill", "grandon@usf.edu", "ST001", "Librarian", "Library Services");
+            Library library = new Library();
 
-            Console.WriteLine("Student: " + s1.Name + " - " + s1.ID);
-            Console.WriteLine("Staff: " + st1.Name + " - " + st1.ID);
+            Book book1 = new Book("The Art of Data Strategy", "Liam Reynolds", "ISBN111", 4);
+            Book book2 = new Book("Business Insights with AI", "Olivia Carter", "ISBN222", 3);
+            Book book3 = new Book("Analytics in Action", "Nathan Brooks", "ISBN333", 6);
+
+            Student student1 = new Student("Akhil", "akhil@usf.edu", "S001", "Business Analytics", 2026);
+            Student student2 = new Student("Sandeep", "sandeep@usf.edu", "S002", "Information Systems", 2025);
+
+            Staff staff1 = new Staff("Grandon Gill", "grandon@usf.edu", "ST001", "Librarian", "Library Services");
+
+            library.AddBook(book1);
+            library.AddBook(book2);
+            library.AddBook(book3);
+
+            library.AddPatron(student1);
+            library.AddPatron(student2);
+            library.AddPatron(staff1);
+
+            library.DisplayBooks();
+            Console.WriteLine();
+
+            library.DisplayPatrons();
+            Console.WriteLine();
+
+            Console.WriteLine("Borrowing Books...");
+            library.BorrowBook("Sandeep", "Business Insights with AI");
+            library.BorrowBook("Akhil", "Analytics in Action");
+            Console.WriteLine();
+
+            Console.WriteLine("Books after borrowing:");
+            library.DisplayBooks();
         }
     }
 }

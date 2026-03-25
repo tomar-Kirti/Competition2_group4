@@ -1,4 +1,4 @@
-namespace LibraryManagementSystem
+namespace Competition2_group4
 {
     public class Staff : Person
     {
